@@ -94,13 +94,13 @@
 	}
 	lineup {
 		display: block;
-		width: 130;
+		width: 134;
 		height: 2;
-		margin: 2 0 0 14;
+		margin: 2 0 0 12;
 		background: #f6a85a;
 		transition: all 300ms ease-in-out;
 	}
-	p {margin: -3 0 0 0; padding: 0; transition: all 300ms ease-in-out; text-align: justify;}
+	p {margin: -3 0 0 0; padding: 0; transition: all 300ms ease-in-out; text-align: justify; line-height: 1.4;}
 	span {display: inline; padding: 14; transition: all 300ms ease-in-out;}
 	a {color: #CC8E50; text-decoration: none; font-weight: bold; transition: all 300ms ease-in-out;}
 	b { color: #CC8E50; }
@@ -150,8 +150,8 @@ function sel(id) {
 		document.getElementById("w4").style.display = "none";
 		
 		document.getElementById("line").style.background = "#f6a85a";
-		document.getElementById("line").style.margin = "2 0 0 14";
-		document.getElementById("line").style.width = "130px";
+		document.getElementById("line").style.margin = "2 0 0 12";
+		document.getElementById("line").style.width = "134px";
 	}
 	else if (id == 2) {
 		document.getElementById("m1").className = "tx1";
@@ -171,7 +171,7 @@ function sel(id) {
 		
 		document.getElementById("line").style.background = "#f76e90";
 		document.getElementById("line").style.margin = "2 0 0 176";
-		document.getElementById("line").style.width = "220px";
+		document.getElementById("line").style.width = "170px";
 	}
 	else if (id == 3) {
 		document.getElementById("m1").className = "tx1";
@@ -190,8 +190,8 @@ function sel(id) {
 		document.getElementById("w4").style.display = "none";
 		
 		document.getElementById("line").style.background = "#ae6ef7";
-		document.getElementById("line").style.margin = "2 0 0 428";
-		document.getElementById("line").style.width = "118px";
+		document.getElementById("line").style.margin = "2 0 0 374";
+		document.getElementById("line").style.width = "122px";
 	}
 	else if (id == 4) {
 		document.getElementById("m1").className = "tx1";
@@ -210,8 +210,8 @@ function sel(id) {
 		document.getElementById("w4").style.display = "block";
 		
 		document.getElementById("line").style.background = "#6e82f7";
-		document.getElementById("line").style.margin = "2 0 0 580";
-		document.getElementById("line").style.width = "108px";
+		document.getElementById("line").style.margin = "2 0 0 526";
+		document.getElementById("line").style.width = "114px";
 	}
 	cur_sel = id; // такс, запомним где Мы сейчас..
 }
@@ -504,7 +504,7 @@ function toggleContent(element) {
 			<div style="display: flex; justify-content: space-evenly;">
 				<div style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-top: 7px;">
 					<span class="tx2" id="m1" onclick="sel(1)">Знакомство</span>
-					<span class="tx1" id="m2" onclick="sel(2)">Достижения и опыт</span>
+					<span class="tx1" id="m2" onclick="sel(2)">Навыки и опыт</span>
 					<span class="tx1" id="m3" onclick="sel(3)">Увлечения</span>
 					<span class="tx1" id="m4" onclick="sel(4)">Связаться</span>
 					<lineup id="line"></lineup>
