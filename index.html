@@ -12,7 +12,7 @@
 		vertical-align: middle;
 		height: 50;
 		
-		font-family: 'NoirPro', sans-serif;
+		font-family: 'finlandica', sans-serif;
 		
 		//transition: all 300ms ease-in-out;
 	}
@@ -49,6 +49,23 @@
 	body.visible {
 		opacity: 1;
 	}
+
+	::selection{
+		background-color: #f6a85a90;
+	}
+	.theme1 ::selection {
+        background-color: #f6a85a90;
+	}
+	.theme2 ::selection {
+        background-color: #f76e9090;
+	}
+	.theme3 ::selection {
+        background-color: #ae6ef790;
+	}
+	.theme4 ::selection {
+        background-color: #6e82f790;
+	}
+
 	btn {
 		display: block;
 		cursor: pointer;
@@ -123,6 +140,7 @@
 <script>
 var cur_sel = 1;
 var cur_theme = 1; // 1 - light, 2 - dark
+var content;
 
 function sel(id) {
 	// 1,2,3,4 - Если нажали на категорию, 5,6 - если на кнопку!
@@ -155,6 +173,11 @@ function sel(id) {
 		document.getElementById("line").style.background = "#f6a85a";
 		document.getElementById("line").style.margin = "2 0 0 12";
 		document.getElementById("line").style.width = "134px";
+
+		document.body.classList.toggle('theme1');
+		document.body.classList.remove('theme2');
+		document.body.classList.remove('theme3');
+		document.body.classList.remove('theme4');
 	}
 	else if (id == 2) {
 		document.getElementById("m1").className = "tx1";
@@ -175,6 +198,11 @@ function sel(id) {
 		document.getElementById("line").style.background = "#f76e90";
 		document.getElementById("line").style.margin = "2 0 0 176";
 		document.getElementById("line").style.width = "170px";
+
+		document.body.classList.remove('theme1');
+		document.body.classList.toggle('theme2');
+		document.body.classList.remove('theme3');
+		document.body.classList.remove('theme4');
 	}
 	else if (id == 3) {
 		document.getElementById("m1").className = "tx1";
@@ -195,6 +223,11 @@ function sel(id) {
 		document.getElementById("line").style.background = "#ae6ef7";
 		document.getElementById("line").style.margin = "2 0 0 374";
 		document.getElementById("line").style.width = "122px";
+
+		document.body.classList.remove('theme1');
+		document.body.classList.remove('theme2');
+		document.body.classList.toggle('theme3');
+		document.body.classList.remove('theme4');
 	}
 	else if (id == 4) {
 		document.getElementById("m1").className = "tx1";
@@ -215,12 +248,21 @@ function sel(id) {
 		document.getElementById("line").style.background = "#6e82f7";
 		document.getElementById("line").style.margin = "2 0 0 526";
 		document.getElementById("line").style.width = "114px";
+		
+		document.body.classList.remove('theme1');
+		document.body.classList.remove('theme2');
+		document.body.classList.remove('theme3');
+		document.body.classList.toggle('theme4');
 	}
 	cur_sel = id; // такс, запомним где Мы сейчас..
 }
 function colorChange() {
 	if (cur_theme == 1) {
 		cur_theme = 2;
+
+		document.getElementById("dark").style.display = "none";
+		document.getElementById("light").style.display = "inline";
+		document.getElementById("hob1").style.background = "#262626";
 
 		document.getElementById("menu").style.background = "#222";
 		//document.getElementById("a").style.color = "#F7F3F2";
@@ -305,6 +347,10 @@ function colorChange() {
 	}
 	else if (cur_theme == 2) {
 		cur_theme = 1;
+
+		document.getElementById("dark").style.display = "inline";
+		document.getElementById("light").style.display = "none";
+		document.getElementById("hob1").style.background = "#f8f5f4";
 		
 		document.getElementById("menu").style.background = "#ddd";
 		//document.getElementById("a").style.color = "#262626";
@@ -488,15 +534,25 @@ function houtB(id) {
 		}
 	}
 }
-function toggleContent(element) {
-	const content = element.nextElementSibling;
+function toggleContent(id) {
+	if (id == 1) {
+		content = document.getElementById("hs1");
+	}
+	else if (id == 2) {
+		content = document.getElementById("hs2");
+	}
+	
 	if (content.style.maxHeight && content.style.maxHeight !== '0px') {
 		content.style.maxHeight = '0px';
 		content.style.padding = '0 56 0 56';
+		document.getElementById("dark").style.transform = "scaleY(1)";
+		document.getElementById("light").style.transform = "scaleY(1)";
 	}
 	else {
 		content.style.maxHeight = content.scrollHeight + "px";
 		content.style.padding = '0 56 28 56';
+		document.getElementById("dark").style.transform = "scaleY(-1)";
+		document.getElementById("light").style.transform = "scaleY(-1)";
 	}
 }
 </script>
@@ -583,7 +639,7 @@ function toggleContent(element) {
 					z-index: -1;
 				}
 				sh {
-					display: block;
+					display: inline-block;
 					text-align: center;
 					font-weight: bold;
 					font-style: italic;
@@ -591,13 +647,14 @@ function toggleContent(element) {
 					font-size: 18px;
 					cursor: pointer;
 					user-select: none;
+					width: 100%;
 				}
 				hs {
 					display: block;
 					max-height: 0;
-					padding: 0 70 0 70;
+					padding: 0 56 0 56;
 					overflow: hidden;
-					transition: all 300ms ease-in-out;
+					transition: background, padding, max-height 300ms ease-in-out;
 				}
 			</style>
 			<div class="block" id="w1">
@@ -610,9 +667,9 @@ function toggleContent(element) {
 				</div>
 			</div>
 			<div class="block" id="w3" style="opacity: 0; display: none;">
-				<hob>
-					<sh onclick="toggleContent(this)">AI Fuel</sh>
-					<hs><p>Искусственный интеллект - это область информатики, которая занимается разработкой компьютерных программ и алгоритмов, которые способны выполнять задачи, требующие интеллектуальных способностей человека. Искусственный интеллект используется в различных областях, таких как медицина, финансы, производство, транспорт и другие. Для создания искусственного интеллекта используются языки программирования, такие как Python, Java, C++, а также библиотеки и фреймворки, такие как TensorFlow, Keras, PyTorch и другие.</p></hs>
+				<hob id="hob1">
+					<div style="position: relative; width: 100%;"><sh onclick="toggleContent(1)">AI Fuel</sh><img id="dark" src="down_dark.svg" style="display: inline; position: absolute; right: 0; width: 22px; height: 22px; padding: 13px 18px 14px 14px; transition: all 300ms ease-in-out;"><img id="light" src="down_light.svg" style="display: none; position: absolute; right: 0; width: 22px; height: 22px; padding: 13px 18px 14px 14px; transition: all 300ms ease-in-out;"></div>
+					<hs id="hs1"><p>Искусственный интеллект - это область информатики, которая занимается разработкой компьютерных программ и алгоритмов, которые способны выполнять задачи, требующие интеллектуальных способностей человека. Искусственный интеллект используется в различных областях, таких как медицина, финансы, производство, транспорт и другие. Для создания искусственного интеллекта используются языки программирования, такие как Python, Java, C++, а также библиотеки и фреймворки, такие как TensorFlow, Keras, PyTorch и другие.</p></hs>
 				</hob>
 			</div>
 			<div class="block" id="w4" style="opacity: 0; display: none;">
